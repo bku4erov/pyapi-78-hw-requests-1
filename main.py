@@ -5,12 +5,12 @@ class SuperheroesInfo:
     
     base_url = 'https://akabab.github.io/superhero-api/api'
 
-    def __init__ (self, *heros_names):    
+    def __init__ (self, *heroes_names):    
         self.superheroes = requests.get(SuperheroesInfo.base_url + '/all.json').json()
         # self.selected_heroes = []
         self.selected_heroes_ids = {}
         for superhero in self.superheroes:
-            if superhero['name'] in heros_names:
+            if superhero['name'] in heroes_names:
                 # Получена вся информацию обо всех супергероях
                 # Можно было бы осуществлять получение характеристик нужных героев по ней
                 # Но для тренировки работы с запросами будем получать информацию о способностях героя по его id
@@ -26,5 +26,5 @@ class SuperheroesInfo:
         return max_int_hero[0]
 
 
-super_heros = SuperheroesInfo('Hulk', 'Captain America', 'Thanos')
-print(f'The most intelligence superhero (from selected superheroes) is {super_heros.get_max_intelligence_hero()}')
+super_heroes = SuperheroesInfo('Hulk', 'Captain America', 'Thanos')
+print(f'The most intelligence superhero (from selected superheroes) is {super_heroes.get_max_intelligence_hero()}')
