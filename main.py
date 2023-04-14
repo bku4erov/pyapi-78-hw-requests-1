@@ -1,12 +1,12 @@
 from pprint import pprint
 import requests
 
-class SuperherosInfo:
+class SuperheroesInfo:
     
     base_url = 'https://akabab.github.io/superhero-api/api'
 
     def __init__ (self, *heros_names):    
-        self.superheroes = requests.get(SuperherosInfo.base_url + '/all.json').json()
+        self.superheroes = requests.get(SuperheroesInfo.base_url + '/all.json').json()
         # self.selected_heroes = []
         self.selected_heroes_ids = {}
         for superhero in self.superheroes:
@@ -20,11 +20,11 @@ class SuperherosInfo:
     def get_max_intelligence_hero(self):
         heroes_intelligence = {}
         for hero_name, hero_id in self.selected_heroes_ids.items():
-            res = requests.get(SuperherosInfo.base_url + f'/powerstats/{hero_id}.json').json()
+            res = requests.get(SuperheroesInfo.base_url + f'/powerstats/{hero_id}.json').json()
             heroes_intelligence[hero_name] = res['intelligence']
         max_int_hero = max(heroes_intelligence.items(), key= lambda x: x[1])
         return max_int_hero[0]
 
 
-super_heros = SuperherosInfo('Hulk', 'Captain America', 'Thanos')
+super_heros = SuperheroesInfo('Hulk', 'Captain America', 'Thanos')
 print(f'The most intelligence superhero (from selected superheroes) is {super_heros.get_max_intelligence_hero()}')
