@@ -1,5 +1,5 @@
-from pprint import pprint
 import requests
+
 
 class SuperheroesInfo:
     
